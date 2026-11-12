@@ -1,9 +1,16 @@
 name: Hello World
 on:
   workflow_dispatch: 
+    inputs:
+      chosen-os:
+        required: true
+        type: choice
+        options:
+        - ubuntu-latest
+        - macOS
 jobs:
   say-hello:
-    runs-on: ubuntu-latest
+    runs-on: ["${{ inputs.chosen-os }}"]
     steps:
       - name: Print greeting
         run: echo "Hello, World!"
